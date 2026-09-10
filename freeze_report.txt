@@ -1,0 +1,11 @@
+    frozen force: 25/229 snapshots
+    frozen force: 50/229 snapshots
+    frozen force: 75/229 snapshots
+    frozen force: 100/229 snapshots
+    frozen force: 125/229 snapshots
+    frozen force: 150/229 snapshots
+    frozen force: 175/229 snapshots
+    frozen force: 200/229 snapshots
+    frozen force: 225/229 snapshots
+  time grid: dtau 0.005 · dtau_startup 0.001 for t < 0.06
+  wrote force_n64_N128.npz: 229 samples, 720 MB, sha256 e1434dae1249

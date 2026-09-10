@@ -1,0 +1,26 @@
+Manufactured-solution check: u(x,0)=0 forced by the residual of u*
+  step    77  t=0.3015  tau=0.6985  max|u|= 2.3384  tail=1.42e-04   25.5 steps/s
+  grid 32^3 · dealias=strict23 · steps 253 · 9.8 s
+  divergence (final)      3.07e-16
+  tracking error (max)    0.01 %   (tolerance 5 %)
+  kinetic energy          start 0.00e+00 · peak 0.6110
+  fitted max|u| slope     -0.500  (manufactured growth: expected -0.500)
+  restriction registration 4.27e-16  (fine->coarse origin phase, threshold 1e-10)
+  restriction (analytic)  4.52e-16  (cos modes sampled on both grids, threshold 1e-10)
+  upsample registration   8.11e-15  (2x renderer resampling, cell-centred phase, threshold 1e-10)
+  Leray projection        2.37e-16  (div P u and idempotence, threshold 1e-12)
+  PASS
+Manufactured-solution check: u(x,0)=0 forced by the residual of u*
+  step    27  t=0.1058  tau=0.8942  max|u|= 2.0680  tail=1.42e-04    8.9 steps/s
+  step   102  t=0.3993  tau=0.6007  max|u|= 2.5204  tail=1.42e-04    9.2 steps/s
+  step   179  t=0.6951  tau=0.3049  max|u|= 3.5287  tail=1.42e-04    9.4 steps/s
+  grid 32^3 · dealias=pad32 · steps 253 · 27.0 s
+  divergence (final)      3.08e-16
+  tracking error (max)    0.01 %   (tolerance 5 %)
+  kinetic energy          start 0.00e+00 · peak 0.6110
+  fitted max|u| slope     -0.500  (manufactured growth: expected -0.500)
+  restriction registration 4.27e-16  (fine->coarse origin phase, threshold 1e-10)
+  restriction (analytic)  4.52e-16  (cos modes sampled on both grids, threshold 1e-10)
+  upsample registration   8.11e-15  (2x renderer resampling, cell-centred phase, threshold 1e-10)
+  Leray projection        2.37e-16  (div P u and idempotence, threshold 1e-12)
+  PASS

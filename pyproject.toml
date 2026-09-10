@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nsblowup"
+version = "0.1.0"
+description = "Forced pseudo-spectral DNS of a paper-inspired finite-scale collapsing-core surrogate. Not a blowup proof."
+readme = "README.md"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24", "matplotlib>=3.7"]
+
+[tool.setuptools]
+packages = ["nsblowup", "nsblowup.core", "nsblowup.reference", "nsblowup.run",
+            "nsblowup.verify"]

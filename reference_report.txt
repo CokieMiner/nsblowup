@@ -1,0 +1,97 @@
+Reference construction (finite-scale surrogate)
+  similarity: A=1/2+h, D=1/2-h, h=0.005 (limit 0.01), q_floor=0.1, t_end=0.900
+  grid 64^3 · dealias=strict23 · nu=0.02 · j0=0.25 · support r<= 0.42, |z| <= 0.42
+  pre-spectral construction: C-infinity compact window and smooth
+  start (u(.,0)=0); the band-limited discrete field is globally supported
+
+  momentum balance (max norms of terms filtered to the retained
+  band the force carries, formed on the construction grid: N* in
+  --force-grid mode, the DNS grid otherwise; 'f/max term' is NOT a
+  cancellation measure - the largest terms can peak at different
+  cells; the cancellation line below is the real one; 'check'
+  compares the DNS-grid reconstruction against the force - roundoff
+  in grid-relative mode, restriction-after-nonlinearity in N* mode)
+     tau      d_t u     (u.g)u  -nu Lap u     grad p          f f/max term    check
+    0.10     12.662     70.843     73.962     33.059    118.543     1.6028  1.4e-16
+         cancellation (annulus region) 0.5664 · pointwise p10/p50/p90 0.469/0.836/0.988
+    0.20      4.728     26.417     27.519     12.359     42.512     1.5448  1.2e-16
+         cancellation (annulus region) 0.6249 · pointwise p10/p50/p90 0.480/0.827/0.985
+    0.40      1.687      9.257     21.240      4.406     21.984     1.0350  1.0e-16
+         cancellation (annulus region) 0.7034 · pointwise p10/p50/p90 0.487/0.824/0.980
+    0.70      0.773      7.329     25.341      4.330     26.930     1.0627  9.9e-17
+         cancellation (annulus region) 0.7543 · pointwise p10/p50/p90 0.514/0.836/0.978
+
+  annular wave sector
+    basis: w_i = curl A(a = e_i), i = 1..4 (families A=(0, 2), B=(1, 3)); taus=(0.4, 0.6)
+    |gradient| = 2.2822e-12 · Hessian at a=0 positive definite: True
+    local (Newton) quadratic prediction of the achievable reduction: 0.000e+00
+    log-scale free-phase scan: 45.36209038 vs 45.36209038 at a=0 (winner: log-scan)
+    optimum a* = [0. 0. 0. 0.]
+    note: in the current discrete system the optimizer prefers ZERO;
+    the basis packets do not pass the retained-band gate at this n,
+    so this does not test the paper's cancellation mechanism.
+    model checked against true force evaluations: model 45.36209038 vs true 45.36209038 (rel. error 0.0e+00)
+    model vs 20 random amplitude vectors (10^-5..1): worst relative error 4.7e-16
+    note: the Newton value is local; the scan is a coarse sample;
+    the objective is quartic, so neither is a global certificate;
+    it is the finite-tau norm, not the asymptotic cancellation.
+     tau   base box  waves box  box ratio   base ann  waves ann  ann ratio
+  (box = RMS; ann = the annulus-weighted L2 objective the fit
+  minimises; ratios are reductions base/waves)
+    0.15    2.22940    2.22940     1.000x    4.79954    4.79954     1.000x
+    0.25    2.11629    2.11629     1.000x    4.40519    4.40519     1.000x
+    0.40    2.25913    2.25913     1.000x    4.51280    4.51280     1.000x
+    0.60    2.60291    2.60291     1.000x    4.99967    4.99967     1.000x
+
+  wave basis stress moments (annulus-weighted, units u^2: basis
+  characterisation only, not comparable to a residual; formed on the
+  construction grid)
+    C_theta:
+          0.00000     0.00000    -0.00000    -0.00000
+          0.00000     0.00000    -0.00000     0.00000
+         -0.00000    -0.00000    -0.00000     3.62920
+         -0.00000     0.00000     3.62920     0.00000
+    C_z:
+         -0.00000    -0.00000     0.00000     0.42957
+         -0.00000    -0.00000     0.56809     0.00000
+          0.00000     0.56809     0.00000     0.00000
+          0.42957     0.00000     0.00000     0.00000
+
+  full quadratic stress balance R + lambda D  (Cartesian, units u/t;
+  D = M P N_h(w) - same nonlinear operator and dealiasing as the
+  force, masked; includes the m=0 AND m=2 azimuthal harmonics -
+  NOT the azimuthal mean; formed on the construction grid; 'ratio'
+  = ||R + lambda D|| / ||R||, a REMAINING norm: 0.996 = 0.4%
+  reduction)
+     tau      ||R||      ||D||   lam_signed   lam_phys  ||R+ls D||  ratio_s  ||R+lp D||  ratio_p
+    0.40     4.5128  3780.5985   -8.045e-05     0.0000      4.5025   0.9977      4.5128   1.0000
+    0.60     4.9997  2425.9795   -9.668e-05     0.0000      4.9942   0.9989      4.9997   1.0000
+
+  carrier wavenumber per wave vector vs retained band (worst-case gate)
+  tau=0.20 q=0.20  [w1=17 w2=21 w3=14 w4=21 family A=14 family B=21 all four=21]  worst energy inside 0.80x cut: 0.693  unresolved (do not use for carrier-scaling fits)
+  tau=0.30 q=0.30  [w1=11 w2=17 w3=11 w4=15 family A=11 family B=15 all four=15]  worst energy inside 0.80x cut: 0.817  unresolved (do not use for carrier-scaling fits)
+  tau=0.45 q=0.45  [w1=11 w2=14 w3=9 w4=14 family A=9 family B=14 all four=14]  worst energy inside 0.80x cut: 0.928  unresolved (do not use for carrier-scaling fits)
+  tau=0.60 q=0.60  [w1=8 w2=12 w3=8 w4=12 family A=8 family B=12 all four=12]  worst energy inside 0.80x cut: 0.965  unresolved (do not use for carrier-scaling fits)
+  tau=0.75 q=0.75  [w1=7 w2=11 w3=7 w4=11 family A=7 family B=11 all four=11]  worst energy inside 0.80x cut: 0.981  unresolved (do not use for carrier-scaling fits)
+
+  swirl-profile self-similarity (analytic field, z = 0 half-line)
+  q^{1/2+h} u_theta at fixed X = (r/L)^2/(2q); defect = relative RMS vs tau=0.45 (DNS-side profiles need --store-swirl)
+  tau=0.15 q=0.150  defect 1.249e-02
+  tau=0.25 q=0.250  defect 4.981e-03
+  tau=0.40 q=0.400  defect 0.000e+00
+  tau=0.60 q=0.600  defect 6.949e-02
+  tau=0.75 q=0.750  defect 1.462e-01
+  metadata: code_hash=e116631432a8  n=64  reference_factor=2  reference_grid=128  force_grid=None  dealias=strict23  h=0.005  q_floor=0.1  viscosity=0.02  taus=[0.4, 0.6]  metric=annulus-weighted L2 of the residual  carrier_metric=gated FFT peak, wave-only velocity
+
+  force fingerprints at tau=0.3, 0.6: restricted P_N f_N* ba566ea87d3057cb
+
+  d_t u_ref: automatic derivative vs central difference
+  t=0.3: AD rms=0.117704   FD rms=0.117704 (eps=1.40e-03)   relative difference 2.06e-06
+  t=0.7: AD rms=0.202316   FD rms=0.202316 (eps=6.00e-04)   relative difference 2.41e-06
+
+  advection cross-check: (u.grad)u spectral vs 4th-order differences,
+  and the rotational identity mask*P[omega x u] = mask*P[(u.grad)u]
+  t=0.3: advective spectral     1.2609   FD     1.2425   rel.diff 1.45%   banded identity 4.40e-16
+  t=0.7: advective spectral     1.5192   FD     1.5124   rel.diff 0.45%   banded identity 3.48e-16
+
+wrote wave_calibration.json (coeffs=[0.0, 0.0, 0.0, 0.0], relative norm reduction 0.000e+00)

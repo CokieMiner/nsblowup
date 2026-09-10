@@ -1,0 +1,13 @@
+# generated / machine-specific
+__pycache__/
+*.pyc
+
+# large outputs (regenerate with the pipeline; not part of the code)
+*.npz
+*.mp4
+*.gif
+*.png
+
+# wave_calibration.json is tracked on purpose: frozen input written by
+# `python cli.py reference --calibrate --save-calibration` and consumed by
+# the `dns` command.

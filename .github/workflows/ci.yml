@@ -1,0 +1,29 @@
+name: ci
+
+on: [push, pull_request]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install numpy matplotlib
+      - run: python -m compileall -q nsblowup cli.py
+      - run: python cli.py verify --n 16
+      - run: python cli.py verify --n 16 --dealias pad32
+      - run: python cli.py reference --n 16 > /dev/null
+      - run: python cli.py reference --n 8 --force-grid 16 --freeze-force /tmp/force.npz > /dev/null
+      - run: python cli.py dns --n 8 --force-table /tmp/force.npz --frames 1 --t-end 0.02 --particles 0 --image 64 --samples 8 --output /tmp/t.mp4 --archive /tmp/t.npz > /dev/null
+      - run: |
+          python - <<'PY'
+          import json
+          import numpy as np
+          meta = json.loads(str(np.load("/tmp/force.npz", allow_pickle=False)["meta"]))
+          run = np.load("/tmp/t.npz")
+          assert str(run["parent_force_hash"]) == meta["parent_force_data_hash"]
+          assert str(run["code_hash"]) == meta["code_hash"]
+          print("parent/table identity OK")
+          PY

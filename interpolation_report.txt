@@ -1,0 +1,22 @@
+  frozen-grid interpolation error vs the oracle, randomized
+  times, normalised by the window force scale; the ramp window
+  also tests the shipped piecewise grid
+
+  window startup ramp (tau 0.94..1.00)
+                          grid  nodes    max err   mean err   order
+            uniform dtau=0.005     13   1.36e-02   6.49e-03        
+           uniform dtau=0.0025     25   1.30e-03   6.76e-04    3.39
+            uniform dtau=0.001     61   3.55e-05   1.29e-05    3.93
+        piecewise (as shipped)    229   3.55e-05   1.29e-05        
+
+  window mid collapse (tau 0.50..0.94)
+                          grid  nodes    max err   mean err   order
+             uniform dtau=0.01     45   2.76e-08   2.11e-08        
+            uniform dtau=0.005     89   2.15e-08   1.92e-08    0.36
+           uniform dtau=0.0025    177   2.07e-08   1.84e-08    0.05
+
+  window late collapse (tau 0.10..0.50)
+                          grid  nodes    max err   mean err   order
+             uniform dtau=0.01     41   1.02e-05   1.71e-06        
+            uniform dtau=0.005     81   7.62e-07   1.27e-07    3.74
+           uniform dtau=0.0025    161   3.91e-08   2.26e-08    4.28

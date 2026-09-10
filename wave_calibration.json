@@ -1,0 +1,30 @@
+{
+  "wave_coeffs": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "residual_energy_before": 45.36209037687857,
+  "residual_energy_after": 45.36209037687857,
+  "relative_norm_reduction": 0.0,
+  "method": "quadratic model of the discrete residual over all four coefficients, free phases; optimum verified with true force evaluations",
+  "force_fingerprint": "ba566ea87d3057cb",
+  "parent_force_data_hash": "",
+  "metadata": {
+    "code_hash": "e116631432a8",
+    "n": 64,
+    "reference_factor": 2,
+    "reference_grid": 128,
+    "force_grid": null,
+    "dealias": "strict23",
+    "h": 0.005,
+    "q_floor": 0.1,
+    "viscosity": 0.02,
+    "taus": [
+      0.4,
+      0.6
+    ],
+    "metric": "annulus-weighted L2 of the residual"
+  }
+}
